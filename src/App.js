@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { addUser } from './store/UsersActions'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import Users from "./Components/Users";
@@ -6,37 +8,10 @@ import AddUserForm from "./Components/AddUserForm";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [
-        {
-          name: "Joshua Mensah",
-          email: "Joewy4me@yahoo.com",
-          gen: 15,
-          id: "094484fdfkjskks",
-        },
-
-        {
-          name: "Susana Mensah",
-          email: "Siawsusan84@gmail.com",
-          gen: 10,
-          id: "hfhfdkfd98833",
-        },
-        {
-          name: "Agnes Siaw",
-          email: "Siawagnes89@gmail.com",
-          gen: 4,
-          id: "nhff877370",
-        },
-      ],
-    };
-  }
-  addNewUser = (user) => {
-    user.id = Math.random().toString();
-    this.setState({
-      users: [...this.state.users, user],
-    });
+  
+  addNewUser = (newUser) => {
+    //user.id = Math.random().toString();
+    this.props.addUser(newUser)
   };
 
   deleteUser = (id) => {
@@ -67,7 +42,7 @@ class App extends Component {
             <Col>
             <h4>ALL CODETRAIN USERS</h4>
             <br/>
-              <Users userData={this.state.users} deleteUser={this.deleteUser} editUser={this.editUser} />
+              <Users userData={this.props.users} deleteUser={this.deleteUser} editUser={this.editUser} />
             </Col>
           </Row>
         </Container>
@@ -75,5 +50,12 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps =(state) => ({
+  users: state.users
+});
 
-export default App;
+const mapDispatchToProps = {
+  addUser: addUser
+}
+
+export default  connect (mapStateToProps, mapDispatchToProps)(App);
