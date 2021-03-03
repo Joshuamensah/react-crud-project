@@ -7,7 +7,7 @@ const initialState = {
           email: "Joewy4me@yahoo.com",
           gen: 15,
           id: "094484fdfkjskks",
-        },
+        }, 
 
         {
           name: "Susana Mensah",
@@ -28,14 +28,17 @@ const initialState = {
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_USER":
-            const newUser = {
-                name: action.payload.name,
-                email: action.payload.email,
-                gen: action.payload.gen
-            };
-            return {...state,users:[...state.users, newUser ]};
-        
-        
+            
+            return {...state,users:[...state.users, action.payload]};
+        case "DELETE_USER":
+          let undeletedUsers = state.users.filter((user) => user.id !== action.payload);
+        return {...state, users: undeletedUsers}
+
+      case  "EDIT_USER":
+      return {...state,users: state.users.map((user) =>
+        user.id === action.payload.id  ? action.payload : user
+  
+      )};
     
         default:
             return state

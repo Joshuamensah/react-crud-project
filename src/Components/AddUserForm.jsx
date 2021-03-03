@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
 import { Form, Button } from "react-bootstrap";
+import {addUser} from '../actions/UsersActions'
 
 class AddUserForm extends Component {
     constructor(props) {
@@ -58,4 +60,8 @@ class AddUserForm extends Component {
   }
 }
 
-export default AddUserForm;
+const mapDispatchToProps = {
+  addNewUser: addUser
+}
+
+export default connect (null, mapDispatchToProps)(AddUserForm);
