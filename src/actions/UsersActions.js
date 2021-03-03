@@ -7,11 +7,11 @@ import { firestoreConnect } from "react-redux-firebase";
     const firestore = getFirestore();
     firestore.collection("users").add(newUser).then(res=> {
         console.log("user added");
-        dispatch ({
-            type: "ADD_USER",
-            payload: 'user added succesfully'
-        })
-    }).catch(err =>{
+        //dispatch ({
+           // type: "ADD_USER",
+           // payload: 'user added succesfully'
+    })
+    .catch(err =>{
         console.log("there was an error");
     })
    }
@@ -23,6 +23,7 @@ import { firestoreConnect } from "react-redux-firebase";
 }
 //action creator for deleting User
  export const deleteUser = (userId) => {
+     console.log("action-Fired",userId)
     return (dispatch , getState, {getFirestore}) => {
         const firestore = getFirestore();
         firestore.collection("users ").doc(userId).delete()

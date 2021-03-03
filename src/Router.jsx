@@ -10,11 +10,11 @@ const Router = () => {
         <BrowserRouter>
         <div>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/Signup">Sign Up</NavLink>
+            <NavLink to="/SignUp">Sign Up</NavLink>
             <NavLink to="/Login">Login</NavLink>
         </div>
             <PrivateRoute exact path="/" component={App} />
-            <Route  path="/Signup" component={SignUp} />
+            <Route  path="/SignUp" component={SignUp} />
             <Route  path="/Login" component={Login} />
         </BrowserRouter>
     );

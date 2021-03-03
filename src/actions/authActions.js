@@ -6,7 +6,7 @@ export const signUp = (user) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
-      .then((userCreds) => console.log("User created Successfully", userCreds))
+      .then((UserCreds) => { console.log("User created Successfully", UserCreds);})
       .catch((err) => console.log("Something went wrong", err));
   };
 };
@@ -14,11 +14,14 @@ export const signUp = (user) => {
 export const loginUser = (email, password) => {
   return (dispatch, getstate, { getFirebase }) => {
     const firebase = getFirebase();
+    console.log(firebase);
 
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((user) => console.log("User logged in Successfully", user))
+      .then((UserCreds) => {
+        console.log("User logged in Successfully", UserCreds)
+      })
       .catch((err) => console.log("Sorry ,something went wrong", err));
   };
 };
